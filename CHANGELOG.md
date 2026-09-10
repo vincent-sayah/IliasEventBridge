@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1 — 2026-09-10
+
+- Corrige la version minimale ILIAS de `7.30.0` vers `7.30` afin qu’ILIAS 7.30 autorise l’activation du plugin principal et du compagnon cron.
+
 ## 0.1.0 — 2026-09-10
 
 - Premier portage du plugin vers ILIAS 7.30.

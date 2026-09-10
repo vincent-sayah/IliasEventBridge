@@ -28,4 +28,6 @@ jobs:
           php -l /tmp/ileb-cron-plugin.php
           php -l /tmp/ileb-send-cron.php
       - name: Unit tests
-        run: php tests/statement_factory_test.php
+        run: |
+          php tests/plugin_metadata_test.php
+          php tests/statement_factory_test.php
