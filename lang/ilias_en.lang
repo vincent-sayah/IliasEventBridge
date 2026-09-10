@@ -1,0 +1,3 @@
+evnt_evhk_ileb_plugin_title#:#Ilias Event Bridge
+evnt_evhk_ileb_plugin_description#:#Transforms ILIAS 7 events into xAPI statements and sends them to TRAX.
+evnt_evhk_ileb_config_title#:#IliasEventBridge — TRAX/xAPI configuration

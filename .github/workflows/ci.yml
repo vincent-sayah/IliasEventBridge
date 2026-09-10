@@ -1,0 +1,31 @@
+name: PHP compatibility
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  php-lint-and-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['7.3', '7.4', '8.3']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+      - name: Lint EventHook plugin
+        run: find classes sql -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Lint plugin manifest
+        run: php -l plugin.php
+      - name: Lint CronHook companion templates
+        run: |
+          cp companion/IliasEventBridgeCron/plugin.php.tpl /tmp/ileb-plugin.php
+          cp companion/IliasEventBridgeCron/classes/class.ilIliasEventBridgeCronPlugin.php.tpl /tmp/ileb-cron-plugin.php
+          cp companion/IliasEventBridgeCron/classes/class.ilIliasEventBridgeSendCron.php.tpl /tmp/ileb-send-cron.php
+          php -l /tmp/ileb-plugin.php
+          php -l /tmp/ileb-cron-plugin.php
+          php -l /tmp/ileb-send-cron.php
+      - name: Unit tests
+        run: php tests/statement_factory_test.php
