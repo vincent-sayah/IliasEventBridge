@@ -170,7 +170,7 @@ class ilIliasEventBridgeConfigGUI extends ilPluginConfigGUI
             . $this->numberRow('Payload debug maximal', 'max_payload_chars', $this->config->getMaxPayloadChars(), 500, 30000)
             . $this->checkRow('Vérifier le certificat TLS', 'tls_verify', $this->config->isTlsVerificationEnabled(), 'À conserver activé hors test local.')
             . $this->inputRow('Bundle CA personnalisé', 'ca_bundle_path', $this->config->getCaBundlePath(), 'Optionnel, exemple : /etc/pki/tls/certs/ca-bundle.crt')
-            . '</tbody></table><p><button class="btn btn-primary" name="cmd" value="saveConfig" type="submit">Enregistrer</button></p></form></section>';
+            . '</tbody></table><p><button class="btn btn-primary" name="cmd[saveConfig]" value="1" type="submit">Enregistrer</button></p></form></section>';
     }
 
     private function renderCourseTracking(): string
@@ -178,7 +178,7 @@ class ilIliasEventBridgeConfigGUI extends ilPluginConfigGUI
         $courseRefId = $this->requestInt('course_ref_id');
         $html = '<section><h2>Cours et ressources suivis</h2>'
             . '<form method="post" action="' . $this->esc($this->formAction()) . '">'
-            . '<input type="hidden" name="cmd" value="configure">'
+            . '<input type="hidden" name="cmd[configure]" value="1">'
             . '<label for="course_ref_id">Ref-ID du cours : </label> '
             . '<input id="course_ref_id" name="course_ref_id" type="number" min="1" value="' . ($courseRefId > 0 ? $courseRefId : '') . '"> '
             . '<button class="btn btn-default" type="submit">Charger le cours</button></form>';
@@ -207,10 +207,10 @@ class ilIliasEventBridgeConfigGUI extends ilPluginConfigGUI
                 . '<td>' . $refId . '</td></tr>';
         }
         $html .= '</tbody></table><p class="ileb-actions">'
-            . '<button class="btn btn-primary" name="cmd" value="saveCourseTracking" type="submit">Enregistrer ce cours</button> '
-            . '<button class="btn btn-default" name="cmd" value="enableAllCourseResources" type="submit">Tout activer</button> '
-            . '<button class="btn btn-default" name="cmd" value="disableAllCourseResources" type="submit">Tout désactiver</button> '
-            . '<button class="btn btn-default" name="cmd" value="resetCourseTracking" type="submit" onclick="return confirm(\'Réinitialiser ce cours ?\')">Réinitialiser</button>'
+            . '<button class="btn btn-primary" name="cmd[saveCourseTracking]" value="1" type="submit">Enregistrer ce cours</button> '
+            . '<button class="btn btn-default" name="cmd[enableAllCourseResources]" value="1" type="submit">Tout activer</button> '
+            . '<button class="btn btn-default" name="cmd[disableAllCourseResources]" value="1" type="submit">Tout désactiver</button> '
+            . '<button class="btn btn-default" name="cmd[resetCourseTracking]" value="1" type="submit" onclick="return confirm(\'Réinitialiser ce cours ?\')">Réinitialiser</button>'
             . '</p></form></section>';
         return $html;
     }
@@ -219,13 +219,13 @@ class ilIliasEventBridgeConfigGUI extends ilPluginConfigGUI
     {
         $action = $this->formAction();
         return '<section><h2>Actions et diagnostic</h2><form method="post" action="' . $this->esc($action) . '" class="ileb-actions">'
-            . '<button class="btn btn-default" name="cmd" value="testTrax" type="submit">Tester TRAX</button> '
-            . '<button class="btn btn-default" name="cmd" value="scanReadEvents" type="submit">Collecter read_event</button> '
-            . '<button class="btn btn-primary" name="cmd" value="sendOutbox" type="submit">Envoyer l’outbox</button> '
-            . '<button class="btn btn-default" name="cmd" value="resetFailed" type="submit">Réinitialiser les échecs</button> '
-            . '<button class="btn btn-default" name="cmd" value="clearLog" type="submit" onclick="return confirm(\'Vider le journal ?\')">Vider le journal</button> '
-            . '<button class="btn btn-default" name="cmd" value="clearDenyLog" type="submit" onclick="return confirm(\'Vider les refus ?\')">Vider les refus</button> '
-            . '<button class="btn btn-default" name="cmd" value="clearOutbox" type="submit" onclick="return confirm(\'Vider toute l’outbox ?\')">Vider l’outbox</button>'
+            . '<button class="btn btn-default" name="cmd[testTrax]" value="1" type="submit">Tester TRAX</button> '
+            . '<button class="btn btn-default" name="cmd[scanReadEvents]" value="1" type="submit">Collecter read_event</button> '
+            . '<button class="btn btn-primary" name="cmd[sendOutbox]" value="1" type="submit">Envoyer l’outbox</button> '
+            . '<button class="btn btn-default" name="cmd[resetFailed]" value="1" type="submit">Réinitialiser les échecs</button> '
+            . '<button class="btn btn-default" name="cmd[clearLog]" value="1" type="submit" onclick="return confirm(\'Vider le journal ?\')">Vider le journal</button> '
+            . '<button class="btn btn-default" name="cmd[clearDenyLog]" value="1" type="submit" onclick="return confirm(\'Vider les refus ?\')">Vider les refus</button> '
+            . '<button class="btn btn-default" name="cmd[clearOutbox]" value="1" type="submit" onclick="return confirm(\'Vider toute l’outbox ?\')">Vider l’outbox</button>'
             . '</form></section>';
     }
 

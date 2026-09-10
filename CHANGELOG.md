@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 — 2026-09-10
+
+- Corrige les commandes POST des formulaires pour le format attendu par le contrôleur ILIAS 7 (`cmd[action]`).
+- Rétablit l’enregistrement de la configuration, le chargement des cours et toutes les actions de diagnostic/outbox.
+
 ## 0.1.1 — 2026-09-10
 
 - Corrige la version minimale ILIAS de `7.30.0` vers `7.30` afin qu’ILIAS 7.30 autorise l’activation du plugin principal et du compagnon cron.

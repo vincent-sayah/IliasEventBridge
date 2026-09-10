@@ -11,7 +11,7 @@ require __DIR__ . '/../plugin.php';
 if ($id !== 'ileb') {
     failMetadataTest('unexpected EventHook plugin id');
 }
-if ($version !== '0.1.1') {
+if ($version !== '0.1.2') {
     failMetadataTest('unexpected EventHook plugin version');
 }
 if (version_compare($ilias_min_version, '7.30', '>')) {
@@ -23,7 +23,7 @@ require __DIR__ . '/../companion/IliasEventBridgeCron/plugin.php.tpl';
 if ($id !== 'ilec') {
     failMetadataTest('unexpected CronHook plugin id');
 }
-if ($version !== '0.1.1') {
+if ($version !== '0.1.2') {
     failMetadataTest('unexpected CronHook plugin version');
 }
 if (version_compare($ilias_min_version, '7.30', '>')) {

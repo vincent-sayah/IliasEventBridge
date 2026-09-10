@@ -30,4 +30,5 @@ jobs:
       - name: Unit tests
         run: |
           php tests/plugin_metadata_test.php
+          php tests/form_commands_test.php
           php tests/statement_factory_test.php
