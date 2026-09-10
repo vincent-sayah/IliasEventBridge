@@ -44,7 +44,7 @@ Le script crée :
 ## 4. Appliquer les droits et le contexte SELinux
 
 ```bash
-chown -R apache:apache \
+chown -R root:apache \
   /var/www/html/ilias/Customizing/global/plugins/Services/EventHandling/EventHook/IliasEventBridge \
   /var/www/html/ilias/Customizing/global/plugins/Services/Cron/CronHook/IliasEventBridgeCron
 
@@ -56,6 +56,8 @@ find /var/www/html/ilias/Customizing/global/plugins/Services/Cron/CronHook/Ilias
 restorecon -Rv /var/www/html/ilias/Customizing/global/plugins
 systemctl restart php-fpm httpd
 ```
+
+Le dépôt Git doit rester possédé par `root` si les mises à jour sont exécutées avec le compte `root`. Apache peut lire le plugin grâce aux droits `755` sur les répertoires et `644` sur les fichiers.
 
 Si SELinux interdit la connexion HTTP sortante de PHP/Apache vers TRAX :
 
@@ -138,7 +140,7 @@ Le cron système d’ILIAS doit lui-même être planifié. Vérifiez la commande
 cd /var/www/html/ilias/Customizing/global/plugins/Services/EventHandling/EventHook/IliasEventBridge
 git pull --ff-only origin main
 bash scripts/install_cron_companion.sh /var/www/html/ilias
-chown -R apache:apache \
+chown -R root:apache \
   /var/www/html/ilias/Customizing/global/plugins/Services/EventHandling/EventHook/IliasEventBridge \
   /var/www/html/ilias/Customizing/global/plugins/Services/Cron/CronHook/IliasEventBridgeCron
 restorecon -Rv /var/www/html/ilias/Customizing/global/plugins

@@ -43,7 +43,7 @@ cd Customizing/global/plugins/Services/EventHandling/EventHook
 git clone https://github.com/vincent-sayah/IliasEventBridge.git
 cd IliasEventBridge
 bash scripts/install_cron_companion.sh /var/www/html/ilias
-chown -R apache:apache \
+chown -R root:apache \
   /var/www/html/ilias/Customizing/global/plugins/Services/EventHandling/EventHook/IliasEventBridge \
   /var/www/html/ilias/Customizing/global/plugins/Services/Cron/CronHook/IliasEventBridgeCron
 find /var/www/html/ilias/Customizing/global/plugins/Services/EventHandling/EventHook/IliasEventBridge -type d -exec chmod 755 {} \;
@@ -53,6 +53,8 @@ find /var/www/html/ilias/Customizing/global/plugins/Services/Cron/CronHook/Ilias
 restorecon -Rv /var/www/html/ilias/Customizing/global/plugins
 systemctl restart php-fpm httpd
 ```
+
+Le dépôt reste possédé par `root` afin que les futures commandes `git pull` lancées par `root` ne soient pas bloquées par la protection Git `dubious ownership`. Les droits `755/644` permettent à Apache de lire le plugin.
 
 Installez et activez ensuite les deux plugins dans l’administration ILIAS, configurez TRAX dans le plugin principal, puis activez le job `IliasEventBridge — collecte et envoi TRAX`.
 
